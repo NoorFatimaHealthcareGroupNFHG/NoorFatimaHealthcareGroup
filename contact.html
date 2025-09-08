@@ -1,216 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- META & BASIC INFO -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us | Noor Fatima Healthcare Group</title>
   <meta name="description" content="Get in touch with Noor Fatima Healthcare Group — reach us for appointments, enquiries, and support.">
 
-  <!-- ICONS & FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- FONTS & ICONS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
     /* RESET & BASE */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; min-height: 100%; overflow-x: hidden; font-size: clamp(14px, 1.2vw, 18px); }
-    body { font-family: 'Poppins', sans-serif; background: #f7fdfc; color: #333; line-height: 1.6; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7fdfc;
+      color: #333;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     a { text-decoration: none; color: inherit; }
 
-    /* NAVBAR (same as index.html) */
-    .navbar {
-      display: flex; justify-content: space-between; align-items: center;
-      width: 100%; padding: 1rem 2rem; background: #009688;
-      min-height: 64px; gap: 1rem;
+    /* SKIP LINK */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: #009688;
+      color: #fff;
+      padding: 8px 16px;
+      z-index: 1000;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: top 0.3s ease;
     }
-    .navbar .logo { font-size: 1.25rem; font-weight: 700; color: white; }
-    .navbar nav ul { list-style: none; display: flex; gap: 1.25rem; }
-    .navbar nav ul li a { color: white; font-weight: 500; padding-bottom: 0.25rem; transition: all 0.2s; }
-    .navbar nav ul li a.active,
-    .navbar nav ul li a:hover { font-weight: 600; border-bottom: 2px solid #ffc107; }
-    .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
+    .skip-link:focus { top: 10px; }
 
-    /* CONTACT SECTION */
+    /* FOCUS STYLES */
+    :focus { outline: 3px solid #009688; outline-offset: 3px; }
+    button:focus, a:focus, input:focus, textarea:focus, select:focus {
+      outline: 3px solid #009688;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    header a:focus, footer a:focus, .navbar a:focus { background: rgba(0, 150, 136, 0.15); }
+    button:focus-visible { box-shadow: 0 0 0 4px rgba(0,150,136,0.3); }
+
+    /* NAVBAR (exact from index.html) */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: #009688;
+      gap: 1rem;
+      box-sizing: border-box;
+      min-height: 64px;
+    }
+    .navbar .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1;
+    }
+    .navbar nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    .navbar nav ul li a {
+      color: white;
+      font-weight: 500;
+      padding-bottom: 0.25rem;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .navbar nav ul li a.active,
+    .navbar nav ul li a:hover {
+      font-weight: 600;
+      border-bottom: 2px solid #ffc107;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 6px;
+      line-height: 1;
+    }
+
+    /* CONTACT SECTION (premium, equal-height cards) */
     .contact-section { max-width: 1200px; margin: 3rem auto; padding: 0 1rem; }
     .contact-section h2 {
-      text-align: center; font-size: 2.5rem; font-weight: 800; color: #00796b; margin-bottom: 1rem;
+      text-align: center; font-size: 2.25rem; font-weight: 800; color: #00796b; margin-bottom: 0.5rem;
     }
     .contact-section p {
-      text-align: center; color: #555; font-size: 1.1rem; max-width: 720px; margin: 0 auto 3rem;
+      text-align: center; color: #555; font-size: 1.05rem; max-width: 820px; margin: 0 auto 2rem;
     }
 
-    /* CONTACT CARDS */
+    /* grid: allows row items to stretch to same height */
     .contact-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem; margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      align-items: stretch; /* important: forces cards to match row height */
+      margin-bottom: 2.5rem;
     }
+
     .contact-card {
-      background: #fff; padding: 2rem; border-radius: 16px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.08);
-      text-align: center; border-left: 6px solid #009688;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+      border-radius: 14px;
+      padding: 1.6rem;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      border-left: 6px solid #009688;
+      display: flex;
+      flex-direction: column;
+      transition: transform .28s ease, box-shadow .28s ease;
+      min-height: 200px; /* baseline height */
     }
-    .contact-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.10);
+    }
+
+    /* icon block */
     .contact-card .icon {
-      width: 60px; height: 60px; display: flex; align-items: center; justify-content: center;
-      border-radius: 14px; font-size: 1.5rem; color: #fff; margin: 0 auto 1rem;
+      width: 56px; height: 56px; border-radius: 12px;
+      display: grid; place-items:center; color: #fff; font-size: 18px; margin: 0 auto 12px;
     }
-    .contact-card .icon.phone { background: linear-gradient(135deg,#26a69a,#009688); }
-    .contact-card .icon.whatsapp { background: linear-gradient(135deg,#25d366,#1ebc57); }
-    .contact-card .icon.email { background: linear-gradient(135deg,#80cbc4,#009688); }
-    .contact-card .icon.map { background: linear-gradient(135deg,#a5d6a7,#4caf50); }
-    .contact-card h3 { font-size: 1.25rem; font-weight: 700; color: #00594f; margin-bottom: .5rem; }
+    .contact-card .icon.phone { background: linear-gradient(135deg,#2fa48f,#009688); }
+    .contact-card .icon.whatsapp { background: linear-gradient(135deg,#2fbf77,#1ebc57); }
+    .contact-card .icon.email { background: linear-gradient(135deg,#7fcfc3,#009688); }
+    .contact-card .icon.map { background: linear-gradient(135deg,#a7d9b6,#4caf50); }
 
-    /* FIX EMAIL WRAPPING */
-    .contact-card p {
-      font-size: 0.95rem; color: #475657; margin-bottom: 1rem;
-      word-break: break-word; overflow-wrap: anywhere;
-    }
-    .contact-card.email p {
-      font-size: 0.9rem; word-break: break-all;
+    .contact-card h3 {
+      font-size: 1.05rem; font-weight: 700; color: #00594f; text-align:center;
+      margin-bottom: 0.5rem;
     }
 
-    /* CARD BUTTONS */
-    .contact-card .btn {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .7rem 1.2rem; border-radius: 10px; font-weight: 600;
-      color: #fff; background: #009688; transition: background .3s, transform .2s;
+    /* BODY: content area that can expand; buttons are anchored bottom */
+    .card-body {
+      /* this area takes flexible space — keeps buttons anchored at bottom */
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0 0.25rem;
     }
-    .contact-card .btn:hover { background: #00796b; transform: translateY(-3px); }
-    .btn i { font-size: 1rem; }
 
-    /* CONTACT FORM */
+    /* long-text protection: ellipsis + tooltip (no layout shift) */
+    .card-body p {
+      font-size: 0.95rem;
+      color: #475657;
+      margin: 0;
+      width: 100%;
+      text-align: center;
+      white-space: nowrap;         /* keep single line */
+      overflow: hidden;
+      text-overflow: ellipsis;    /* show ... if too long */
+    }
+    /* smaller font for extremely long strings on wide screens (keeps balance) */
+    .card-body p.long {
+      font-size: 0.92rem;
+    }
+
+    /* CTA anchored to bottom */
+    .card-action {
+      margin-top: 1rem;
+      display:flex;
+      justify-content:center;
+    }
+    .card-action .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .65rem 1.05rem;
+      border-radius: 10px;
+      background: #009688;
+      color: #fff;
+      font-weight: 700;
+      transition: background .2s, transform .15s;
+      border: none;
+    }
+    .card-action .btn:hover { background: #00796b; transform: translateY(-3px); }
+
+    /* form */
     .form-wrapper {
-      background: #fff; padding: 2rem; border-radius: 16px;
-      box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-      max-width: 800px; margin: 0 auto;
+      background: #fff; padding: 1.6rem; border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+      max-width: 920px; margin: 0 auto 3rem;
     }
-    form { display: grid; gap: 1.2rem; }
-    label { font-weight: 600; color: #00796b; }
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .form-grid .full { grid-column: 1 / -1; }
+    label { display:block; margin-bottom: .35rem; font-weight: 600; color: #00796b; font-size: .95rem; }
     input, textarea {
-      width: 100%; padding: 0.9rem 1rem; border: 1px solid #ccc;
-      border-radius: 10px; font-size: 1rem; transition: border 0.3s;
+      width: 100%; padding: .9rem 1rem; border-radius: 10px; border: 1px solid #d6e9e6;
+      font-size: .98rem; resize: vertical;
     }
-    input:focus, textarea:focus { border-color: #009688; outline: none; }
-    textarea { min-height: 140px; resize: vertical; }
-    button {
-      background: linear-gradient(135deg,#00bfa5,#009688); color: #fff;
-      font-weight: 700; padding: 0.9rem 1.5rem; border: none; border-radius: 12px;
-      cursor: pointer; transition: background 0.3s, transform 0.2s;
-    }
-    button:hover { background: #00796b; transform: translateY(-3px); }
+    input:focus, textarea:focus { outline: 3px solid rgba(0,150,136,0.12); border-color: #009688; }
+    textarea { min-height: 140px; }
 
-    /* FOOTER (same as index.html) */
-    footer { background: #ffffff; border-top: 4px solid #009688; padding: 3rem 1rem 1rem; color: #009688; box-shadow: 0 -4px 12px rgba(0,0,0,0.05); }
-    .footer-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; padding-bottom: 2rem; }
-    .footer-column h3 { font-weight: 800; margin-bottom: 1rem; font-size: 1.1rem; color: #00796b; }
-    .footer-column ul { list-style: none; padding: 0; margin: 0; }
+    .form-submit {
+      margin-top: .5rem;
+      display:flex; justify-content:flex-start;
+    }
+    .form-submit button {
+      background: linear-gradient(135deg,#00bfa5,#009688); color: white; padding: .75rem 1.2rem;
+      border-radius: 10px; border: none; font-weight: 700; cursor: pointer;
+      transition: transform .15s, background .2s;
+    }
+    .form-submit button:hover { transform: translateY(-3px); background: #00796b; }
+
+    /* FOOTER (copied from index.html) */
+    footer {
+      background: #ffffff;
+      border-top: 4px solid #009688;
+      padding: 3rem 1rem 1rem;
+      color: #009688;
+      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+    }
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      padding-bottom: 2rem;
+    }
+    .footer-column h3 {
+      font-weight: 800;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: #00796b;
+    }
+    .footer-column ul { list-style: none; }
     .footer-column ul li { margin-bottom: 0.6rem; }
-    .footer-column ul li a { color: #00796b; font-weight: 600; transition: all 0.3s; }
-    .footer-column ul li a:hover { color: #004d40; text-decoration: underline; }
+    .footer-column ul li a {
+      color: #00796b;
+      font-weight: 600;
+    }
+    .footer-column ul li a:hover {
+      text-decoration: underline;
+      color: #004d40;
+    }
     .social-icons { display: flex; gap: 0.6rem; }
-    .social-icons a { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: #009688; color: white; font-size: 1rem; transition: background 0.3s, transform 0.3s; }
-    .social-icons a:hover { background: #00695c; transform: translateY(-3px); }
-    .footer-bottom { text-align: center; font-weight: 800; font-size: 0.95rem; padding-top: 1.5rem; color: #004d40; border-top: 2px solid rgba(0, 150, 136, 0.2); }
+    .social-icons a {
+      width: 35px; height: 35px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; background: #009688; color: white;
+    }
+    .social-icons a:hover {
+      background: #00695c;
+      transform: translateY(-3px);
+    }
+    .footer-bottom {
+      text-align: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding-top: 1.5rem;
+      color: #004d40;
+    }
 
     /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 768px) {
       .navbar { position: relative; padding: 0.75rem 1rem; }
       .menu-toggle { display: block; }
       .navbar nav {
-        position: absolute; top: 100%; left: 0;
-        width: 100%; background: #009688; max-height: 0; overflow: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #009688;
+        max-height: 0;
+        overflow: hidden;
         transition: max-height 0.3s ease;
       }
-      .navbar nav ul { flex-direction: column; gap: 0; }
+      .navbar nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+      }
       .navbar nav ul li { border-top: 1px solid rgba(255,255,255,0.2); }
       .navbar nav ul li a { display: block; padding: 0.75rem 1rem; }
       .navbar nav.open { max-height: 500px; }
-      .footer-container { text-align: center; }
-      .social-icons { justify-content: center; }
+      .contact-grid { gap: 1rem; }
     }
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- HEADER / NAVBAR (exact structure/attributes from index.html) -->
   <header>
     <div class="navbar">
-      <a href="index.html" class="logo">Noor Fatima Healthcare Group</a>
-      <button class="menu-toggle"><i class="fas fa-bars"></i></button>
-      <nav>
+      <!-- Logo -->
+      <a href="index.html" class="logo" aria-label="Noor Fatima Healthcare Group Home">Noor Fatima Healthcare Group</a>
+
+      <!-- Mobile Menu Toggle -->
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
+
+      <!-- Primary Navigation -->
+      <nav id="primary-nav" aria-label="Primary navigation">
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="order.html">Buy Medicines</a></li>
-          <li><a href="clinics-pharmacies.html">Clinics & Pharmacies</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="hospitals.html">Hospitals</a></li>
+          <li><a href="clinics-pharmacies.html">Clinics &amp; Pharmacies</a></li>
+          <li><a href="diagnostics.html">Diagnostics</a></li>
+          <li><a href="appointment.html">Appointment</a></li>
+          <li><a href="contact.html" class="active">Contact Us</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- CONTACT SECTION -->
-  <main class="contact-section">
+  <!-- MAIN CONTACT CONTENT -->
+  <main id="main-content" class="contact-section" role="main">
     <h2>Get in Touch</h2>
-    <p>We’re here to help — reach out to us anytime for enquiries, appointments, or support.</p>
+    <p>We’re here to help — reach out to us for enquiries, appointments, or support. Choose a method below or drop us a message using the form.</p>
 
-    <!-- CONTACT CARDS -->
-    <div class="contact-grid">
-      <div class="contact-card">
-        <div class="icon phone"><i class="fas fa-phone-alt"></i></div>
-        <h3>Call Us</h3>
-        <p>+91 98765 43210</p>
-        <a href="tel:+919876543210" class="btn"><i class="fas fa-phone"></i> Call Now</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon whatsapp"><i class="fab fa-whatsapp"></i></div>
-        <h3>WhatsApp</h3>
-        <p>+91 91234 56789</p>
-        <a href="https://wa.me/919123456789" target="_blank" class="btn"><i class="fab fa-whatsapp"></i> Chat Now</a>
-      </div>
-      <div class="contact-card email">
-        <div class="icon email"><i class="fas fa-envelope"></i></div>
-        <h3>Email</h3>
-        <p>NoorFatimaHealthcareGroup@gmail.com</p>
-        <a href="mailto:NoorFatimaHealthcareGroup@gmail.com" class="btn"><i class="fas fa-envelope-open-text"></i> Send Email</a>
-      </div>
-      <div class="contact-card">
-        <div class="icon map"><i class="fas fa-map-marker-alt"></i></div>
-        <h3>Visit Us</h3>
-        <p>New Delhi, India</p>
-        <a href="https://www.google.com/maps" target="_blank" class="btn"><i class="fas fa-location-arrow"></i> Get Directions</a>
-      </div>
-    </div>
+    <!-- CONTACT CARDS GRID -->
+    <section class="contact-grid" aria-label="Contact methods">
+      <article class="contact-card" aria-labelledby="call-title">
+        <div class="icon phone" aria-hidden="true"><i class="fas fa-phone-alt"></i></div>
+        <h3 id="call-title">Call Us</h3>
+        <div class="card-body">
+          <p title="+91 98765 43210">+91 98765 43210</p>
+        </div>
+        <div class="card-action">
+          <a class="btn" href="tel:+919876543210" aria-label="Call now"><i class="fas fa-phone"></i> Call Now</a>
+        </div>
+      </article>
+
+      <article class="contact-card" aria-labelledby="wa-title">
+        <div class="icon whatsapp" aria-hidden="true"><i class="fab fa-whatsapp"></i></div>
+        <h3 id="wa-title">WhatsApp</h3>
+        <div class="card-body">
+          <p title="+91 91234 56789">+91 91234 56789</p>
+        </div>
+        <div class="card-action">
+          <a class="btn" href="https://wa.me/919123456789" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i> Chat Now</a>
+        </div>
+      </article>
+
+      <article class="contact-card" aria-labelledby="email-title">
+        <div class="icon email" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+        <h3 id="email-title">Email</h3>
+        <!-- long email handled with ellipsis + tooltip (title) so it never pushes layout -->
+        <div class="card-body">
+          <p class="long" title="support@noorfatimahealthcaregroupindia.com">support@noorfatimahealthcaregroupindia.com</p>
+        </div>
+        <div class="card-action">
+          <a class="btn" href="mailto:support@noorfatimahealthcaregroupindia.com" aria-label="Send email"><i class="fas fa-envelope-open-text"></i> Send Email</a>
+        </div>
+      </article>
+
+      <article class="contact-card" aria-labelledby="visit-title">
+        <div class="icon map" aria-hidden="true"><i class="fas fa-map-marker-alt"></i></div>
+        <h3 id="visit-title">Visit Us</h3>
+        <div class="card-body">
+          <p title="New Delhi, India">New Delhi, India</p>
+        </div>
+        <div class="card-action">
+          <a class="btn" href="https://www.google.com/maps" target="_blank" rel="noopener" aria-label="Get directions"><i class="fas fa-location-arrow"></i> Get Directions</a>
+        </div>
+      </article>
+    </section>
 
     <!-- CONTACT FORM -->
-    <div class="form-wrapper">
-      <form>
-        <div>
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+    <section class="form-wrapper" aria-labelledby="form-heading">
+      <h3 id="form-heading" style="font-size:1.05rem; margin-bottom:0.75rem; color:#00594f; font-weight:700;">Send us a message</h3>
+      <form id="contactForm" novalidate>
+        <div class="form-grid">
+          <div>
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" placeholder="Your full name" required>
+          </div>
+          <div>
+            <label for="phone">Phone (optional)</label>
+            <input id="phone" name="phone" type="tel" placeholder="+91 9XXXXXXXXX">
+          </div>
+          <div class="full">
+            <label for="emailInput">Email address</label>
+            <input id="emailInput" name="email" type="email" placeholder="you@domain.com" required>
+          </div>
+          <div class="full">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="How can we help you?" required></textarea>
+          </div>
         </div>
-        <div>
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+        <div class="form-submit">
+          <button type="submit" aria-label="Send message"><i class="fas fa-paper-plane"></i>&nbsp;Send Message</button>
         </div>
-        <div>
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Write your message" required></textarea>
-        </div>
-        <button type="submit"><i class="fas fa-paper-plane"></i> Send Message</button>
       </form>
-    </div>
+    </section>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (exact structure from index.html) -->
   <footer>
     <div class="footer-container">
+      <!-- Column 1 -->
       <div class="footer-column">
         <h3>Products</h3>
-        <ul><li><a href="order.html">Buy Medicines</a></li></ul>
+        <ul>
+          <li><a href="order.html">Buy Medicines</a></li>
+        </ul>
       </div>
+
+      <!-- Column 2 -->
       <div class="footer-column">
         <h3>About</h3>
         <ul>
@@ -220,34 +430,89 @@
           <li><a href="#">Community Initiatives</a></li>
         </ul>
       </div>
+
+      <!-- Column 3 -->
       <div class="footer-column">
         <h3>Support</h3>
         <ul>
-          <li><a href="contact.html" class="active">Contact Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
           <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms & Conditions</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
         </ul>
       </div>
+
+      <!-- Column 4 -->
       <div class="footer-column">
         <h3>Follow Us</h3>
         <div class="social-icons">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">&copy; 2025 Noor Fatima Healthcare Group. All rights reserved.</div>
+
+    <div class="footer-bottom">
+      &copy; 2025 Noor Fatima Healthcare Group. All rights reserved.
+    </div>
   </footer>
 
-  <!-- SCRIPT -->
+  <!-- NAVBAR TOGGLER SCRIPT (exact behaviour from index.html) -->
   <script>
-    const menuToggle = document.querySelector('.menu-toggle');
-    const nav = document.querySelector('.navbar nav');
-    menuToggle.addEventListener('click', () => {
-      nav.classList.toggle('open');
-    });
+    (function() {
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.getElementById('primary-nav');
+      if (!toggle || !nav) return;
+      const openNav = () => {
+        toggle.setAttribute('aria-expanded', 'true');
+        nav.classList.add('open');
+      };
+      const closeNav = () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('open');
+      };
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) closeNav(); else openNav();
+      });
+      // Close nav with Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('open')) {
+          closeNav();
+          toggle.focus();
+        }
+      });
+      // Click outside to close (mobile)
+      document.addEventListener('click', (e) => {
+        if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
+          closeNav();
+        }
+      });
+    })();
+  </script>
+
+  <!-- SMALL: lightweight client-side form feedback (no external files) -->
+  <script>
+    (function(){
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        // minimal client-side check & friendly toast
+        const name = form.name.value.trim();
+        const email = form.email.value.trim();
+        const msg = form.message.value.trim();
+        if (!name || !email || !msg) {
+          alert('Please fill name, email and message.');
+          return;
+        }
+        // In your real site you would POST this to your server or use existing backend.
+        // For now we show a success message and reset the form.
+        alert('Thank you — your message has been received. We will contact you shortly.');
+        form.reset();
+      });
+    })();
   </script>
 </body>
 </html>
