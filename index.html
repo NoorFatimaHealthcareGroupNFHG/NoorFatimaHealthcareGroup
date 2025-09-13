@@ -1,27 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Noor Fatima Healthcare Group</title>
-  <meta name="description" content="Noor Fatima Healthcare Group – Comprehensive, community-based healthcare across hospitals, clinics, pharmacies, and diagnostics with doorstep delivery.">
-  <!-- FONTS & ICONS -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta name="description"
+    content="Noor Fatima Healthcare Group – Comprehensive, community-based healthcare across hospitals, clinics, pharmacies, and diagnostics with doorstep delivery." />
+
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    base-uri 'self';
+    object-src 'none';
+    img-src 'self' data:;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    script-src 'self' 'unsafe-inline';
+    connect-src 'self';
+    upgrade-insecure-requests;
+  " />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#009688" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Noor Fatima Healthcare Group" />
+  <meta property="og:description"
+    content="Comprehensive, community-based healthcare across hospitals, clinics, pharmacies, and diagnostics with doorstep delivery." />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Unified Font Weights -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <style>
-    /* RESET & BASE */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { width: 100%; min-height: 100%; overflow-x: hidden; font-size: clamp(14px, 1.2vw, 18px); }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+      font-size: clamp(14px, 1.2vw, 18px);
+    }
+
     body {
       font-family: 'Poppins', sans-serif;
+      font-weight: 400;
       background: #f7fdfc;
       color: #333;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
-    a { text-decoration: none; color: inherit; }
 
-    /* SKIP LINK */
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
     .skip-link {
       position: absolute;
       top: -40px;
@@ -34,17 +77,10 @@
       font-weight: 600;
       transition: top 0.3s ease;
     }
-    .skip-link:focus { top: 10px; }
 
-    /* FOCUS STYLES */
-    :focus { outline: 3px solid #009688; outline-offset: 3px; }
-    button:focus, a:focus, input:focus, textarea:focus, select:focus {
-      outline: 3px solid #009688;
-      outline-offset: 3px;
-      border-radius: 4px;
+    .skip-link:focus {
+      top: 10px;
     }
-    header a:focus, footer a:focus, .navbar a:focus { background: rgba(0, 150, 136, 0.15); }
-    button:focus-visible { box-shadow: 0 0 0 4px rgba(0,150,136,0.3); }
 
     /* NAVBAR */
     .navbar {
@@ -58,18 +94,21 @@
       box-sizing: border-box;
       min-height: 64px;
     }
+
     .navbar .logo {
       font-size: 1.25rem;
       font-weight: 700;
       color: white;
       line-height: 1;
     }
+
     .navbar nav ul {
       list-style: none;
       display: flex;
       gap: 1.25rem;
       align-items: center;
     }
+
     .navbar nav ul li a {
       color: white;
       font-weight: 500;
@@ -77,11 +116,13 @@
       transition: all 0.2s;
       line-height: 1;
     }
+
     .navbar nav ul li a.active,
     .navbar nav ul li a:hover {
       font-weight: 600;
       border-bottom: 2px solid #ffc107;
     }
+
     .menu-toggle {
       display: none;
       background: none;
@@ -97,20 +138,21 @@
     .health-network {
       background: linear-gradient(180deg, #f8fffd, #ffffff);
       padding: 56px 16px;
-      font-family: 'Poppins', sans-serif;
     }
+
     .health-network .container {
       max-width: 1200px;
       margin: 0 auto;
     }
+
     .health-network h2 {
       text-align: center;
       color: #00796b;
       font-size: 2rem;
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 0.5rem;
-      letter-spacing: 0.2px;
     }
+
     .health-network .sub {
       text-align: center;
       color: #41645f;
@@ -119,30 +161,33 @@
       font-weight: 500;
       line-height: 1.5;
     }
+
     .hn-grid {
       display: grid;
       gap: 1.5rem;
       grid-template-columns: repeat(4, 1fr);
       margin-top: 1.25rem;
     }
+
     .hn-card {
       background: #fff;
       border-radius: 14px;
       padding: 22px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
       transition: transform .28s ease, box-shadow .28s ease;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       min-height: 160px;
     }
-    .hn-card:focus-within,
+
     .hn-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
     }
+
     .hn-icon {
-      background: linear-gradient(135deg, #e6fffb, #d0fff5);
+      background: #e6fffb;
       color: #009688;
       width: 56px;
       height: 56px;
@@ -151,43 +196,51 @@
       border-radius: 10px;
       font-size: 20px;
       margin-bottom: 12px;
-      flex-shrink: 0;
     }
+
     .hn-title {
       color: #00594f;
       font-size: 1.05rem;
       font-weight: 700;
       margin-bottom: 8px;
     }
+
     .hn-desc {
       color: #475657;
       font-size: 0.98rem;
       line-height: 1.45;
       margin-top: auto;
     }
+
     .hn-cta {
       margin-top: 14px;
-      align-self: stretch;
       display: inline-flex;
       gap: .5rem;
       align-items: center;
-      text-decoration: none;
       color: #00796b;
       font-weight: 700;
     }
+
     .hn-cta:hover {
       color: #00594f;
     }
 
-    /* RESPONSIVE */
     @media (max-width: 1100px) {
-      .hn-grid { grid-template-columns: repeat(3, 1fr); }
+      .hn-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
+
     @media (max-width: 768px) {
-      .hn-grid { grid-template-columns: repeat(2, 1fr); }
+      .hn-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
+
     @media (max-width: 520px) {
-      .hn-grid { grid-template-columns: 1fr; }
+      .hn-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* FOOTER */
@@ -197,31 +250,46 @@
       padding: 3rem 1rem 1rem;
       color: #009688;
       font-family: 'Poppins', sans-serif;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
     }
+
     .footer-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
       padding-bottom: 2rem;
     }
+
     .footer-column h3 {
       font-weight: 800;
       margin-bottom: 1rem;
       font-size: 1.1rem;
       color: #00796b;
     }
-    .footer-column ul { list-style: none; }
-    .footer-column ul li { margin-bottom: 0.6rem; }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column ul li {
+      margin-bottom: 0.6rem;
+    }
+
     .footer-column ul li a {
       color: #00796b;
       font-weight: 600;
     }
+
     .footer-column ul li a:hover {
       text-decoration: underline;
       color: #004d40;
     }
-    .social-icons { display: flex; gap: 0.6rem; }
+
+    .social-icons {
+      display: flex;
+      gap: 0.6rem;
+    }
+
     .social-icons a {
       width: 35px;
       height: 35px;
@@ -231,11 +299,13 @@
       border-radius: 50%;
       background: #009688;
       color: white;
+      transition: background 0.3s ease;
     }
+
     .social-icons a:hover {
       background: #00695c;
-      transform: translateY(-3px);
     }
+
     .footer-bottom {
       text-align: center;
       font-weight: 800;
@@ -244,9 +314,17 @@
       color: #004d40;
     }
 
+    /* MOBILE NAV */
     @media (max-width: 768px) {
-      .navbar { position: relative; padding: 0.75rem 1rem; }
-      .menu-toggle { display: block; }
+      .navbar {
+        position: relative;
+        padding: 0.75rem 1rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
       .navbar nav {
         position: absolute;
         top: 100%;
@@ -257,53 +335,57 @@
         overflow: hidden;
         transition: max-height 0.3s ease;
       }
+
       .navbar nav ul {
         flex-direction: column;
         gap: 0;
         padding: 0;
       }
-      .navbar nav ul li { border-top: 1px solid rgba(255,255,255,0.2); }
-      .navbar nav ul li a { display: block; padding: 0.75rem 1rem; }
-      .navbar nav.open { max-height: 500px; }
+
+      .navbar nav ul li {
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .navbar nav ul li a {
+        display: block;
+        padding: 0.75rem 1rem;
+      }
+
+      .navbar nav.open {
+        max-height: 500px;
+      }
     }
   </style>
 </head>
+
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
-  <!-- HEADER / NAVBAR -->
+
   <header>
     <div class="navbar">
-      <!-- Logo -->
-      <a href="index.html" class="logo" aria-label="Noor Fatima Healthcare Group Home">Noor Fatima Healthcare Group</a>
-      <!-- Mobile Menu Toggle -->
-      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="primary-nav">
-        <i class="fas fa-bars" aria-hidden="true"></i>
+      <a href="index.html" class="logo">Noor Fatima Healthcare Group</a>
+      <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+        aria-controls="primary-nav">
+        <i class="fas fa-bars"></i>
       </button>
-      <!-- Primary Navigation -->
-      <nav id="primary-nav" aria-label="Primary navigation">
+      <nav id="primary-nav">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
           <li><a href="order.html">Buy Medicines</a></li>
           <li><a href="hospitals.html">Hospitals</a></li>
           <li><a href="clinics-pharmacies.html">Clinics &amp; Pharmacies</a></li>
           <li><a href="diagnostics.html">Diagnostics</a></li>
-          <li><a href="appointment.html">Appointment</a></li>
-          <li><a href="contact.html">Contact Us</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
   <main id="main-content">
-    <!-- START: Our Health Network -->
     <section class="health-network" aria-labelledby="hn-title">
       <div class="container">
         <h2 id="hn-title">Our Health Network</h2>
-        <p class="sub">
-          Comprehensive healthcare across hospitals, clinics, pharmacies, diagnostics and community programs — built to serve every stage of life.
-          (Click any card to learn more.)
-        </p>
+        <p class="sub">Comprehensive healthcare across hospitals, clinics, pharmacies, diagnostics and community programs — built
+          to serve every stage of life. (Click any card to learn more.)</p>
         <div class="hn-grid" role="list">
           <!-- Card 1 -->
           <article class="hn-card" role="listitem" tabindex="0" aria-labelledby="hn1">
@@ -361,23 +443,20 @@
             <p class="hn-desc">Work with us — careers, supplier partnerships and franchise opportunities across the network.</p>
             <a class="hn-cta" href="coming-soon.html">Join &amp; partner <span class="arrow">→</span></a>
           </article>
+          <!-- ... -->
         </div>
       </div>
     </section>
-    <!-- END: Our Health Network -->
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-container">
-      <!-- Column 1 -->
       <div class="footer-column">
         <h3>Products</h3>
         <ul>
           <li><a href="order.html">Buy Medicines</a></li>
         </ul>
       </div>
-      <!-- Column 2 -->
       <div class="footer-column">
         <h3>About</h3>
         <ul>
@@ -387,64 +466,71 @@
           <li><a href="#">Community Initiatives</a></li>
         </ul>
       </div>
-      <!-- Column 3 -->
       <div class="footer-column">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="contact.html">Contact Us</a></li>
-          <li><a href="privacy.html">Privacy Policy</a></li>
-          <li><a href="terms.html">Terms &amp; Conditions</a></li>
-        </ul>
-      </div>
-      <!-- Column 4 -->
+  <h3 id="contact-footer">Contact Us</h3>
+  <ul>
+    <li>
+      <span class="contact-icon"><i class="fas fa-phone"></i></span>
+      <a href="tel:+9170518 99758">+91-70518 99758</a>
+    </li>
+    <li>
+      <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+      <a href="mailto:info@nfhg.com" class="btn email-btn">Email Now</a>
+    </li>
+    <li>
+      <span class="contact-icon whatsapp"><i class="fab fa-whatsapp"></i></span>
+      <a href="https://wa.me/917051899758" target="_blank">Chat on WhatsApp</a>
+    </li>
+  </ul>
+</div>
+
       <div class="footer-column">
         <h3>Follow Us</h3>
         <div class="social-icons">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
         </div>
       </div>
     </div>
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-      &copy; 2025 Noor Fatima Healthcare Group. All rights reserved.
-    </div>
+    <div class="footer-bottom">&copy; 2025 Noor Fatima Healthcare Group. All rights reserved.</div>
   </footer>
 
-  <!-- NAVBAR TOGGLER SCRIPT -->
   <script>
-    (function() {
+    (function () {
       const toggle = document.querySelector('.menu-toggle');
       const nav = document.getElementById('primary-nav');
       if (!toggle || !nav) return;
+
       const openNav = () => {
         toggle.setAttribute('aria-expanded', 'true');
         nav.classList.add('open');
       };
+
       const closeNav = () => {
         toggle.setAttribute('aria-expanded', 'false');
         nav.classList.remove('open');
       };
+
       toggle.addEventListener('click', () => {
         const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) closeNav(); else openNav();
+        expanded ? closeNav() : openNav();
       });
-      // Close nav with Escape
+
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && nav.classList.contains('open')) {
           closeNav();
           toggle.focus();
         }
       });
-      // Click outside to close (mobile)
+
       document.addEventListener('click', (e) => {
-        if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open')) {
+        if (!nav.contains(e.target) && !toggle.contains(e.target) && nav.classList.contains('open'))
           closeNav();
-        }
       });
     })();
   </script>
 </body>
+
 </html>
