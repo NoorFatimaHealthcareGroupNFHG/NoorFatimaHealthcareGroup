@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://noorfatimahealthcaregroupnfhg.github.io/NoorFatimaHealthcareGroup/sitemap.xml
